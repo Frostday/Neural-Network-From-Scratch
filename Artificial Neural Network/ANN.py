@@ -42,8 +42,8 @@ def cross_entropy_and_softmax_derv(pred, real):
     res = pred - real
     return res/n_samples
 
-def sigmoid_derv(s):
-    return s * (1 - s)
+def sigmoid_derv(x):
+    return sigmoid(x) * (1 - sigmoid(x))
 
 
 class ANN:
@@ -64,23 +64,28 @@ class ANN:
         self.y = y
 
     def feedforward(self):
-        z1 = np.dot(self.x, self.w1) + self.b1
-        self.a1 = sigmoid(z1)
-        z2 = np.dot(self.a1, self.w2) + self.b2
-        self.a2 = sigmoid(z2)
-        z3 = np.dot(self.a2, self.w3) + self.b3
-        self.a3 = softmax(z3)
+        self.z1 = np.dot(self.x, self.w1) + self.b1
+        self.a1 = sigmoid(self.z1)
+        self.z2 = np.dot(self.a1, self.w2) + self.b2
+        self.a2 = sigmoid(self.z2)
+        self.z3 = np.dot(self.a2, self.w3) + self.b3
+        self.a3 = softmax(self.z3)
 
     def backprop(self):
         # we use cross entropy loss because cross-entropy function is able to compute error between two probability distributions.
         loss = error(self.a3, self.y)
         print(' Loss :', loss)
 
-        a3_delta = cross_entropy_and_softmax_derv(self.a3, self.y) # w3
+        a3_delta = cross_entropy_and_softmax_derv(self.a3, self.y)
+        # z3_delta step is skipped because some terms get cancelled when we take derivative of cross entry and then softmax
+        # therefore we combine the two steps into one and calculate a3_delta directly
         z2_delta = np.dot(a3_delta, self.w3.T)
-        a2_delta = z2_delta * sigmoid_derv(self.a2) # w2
+        a2_delta = z2_delta * sigmoid_derv(self.z2)
         z1_delta = np.dot(a2_delta, self.w2.T)
-        a1_delta = z1_delta * sigmoid_derv(self.a1) # w1
+        a1_delta = z1_delta * sigmoid_derv(self.z1)
+        # z(i)_delta is basically dL/da(i)
+        # a(i)_delta is basically dL/dz(i)
+        # L is cross entropy loss here
 
         self.w3 -= self.lr * np.dot(self.a2.T, a3_delta)
         self.b3 -= self.lr * np.sum(a3_delta, axis=0, keepdims=True)
