@@ -18,3 +18,11 @@ After 1000 epochs
 |:-------|:---------------|---------------|
 | 0.00213| 99.87          |  98.33        |
 
+## Convolutional Neural Network
+Reference - https://towardsdatascience.com/convolutional-neural-networks-from-the-ground-up-c67bb41454e1<br>
+
+## Coming soon
+
+-CNNs 
+
+-LSTM-RNNs
