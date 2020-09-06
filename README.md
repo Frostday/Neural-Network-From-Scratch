@@ -8,7 +8,7 @@ Reference - https://towardsdatascience.com/neural-networks-from-scratch-easy-vs-
  
  - The Neural Network model used can be seen below.
 
-![](assets/ann-model.png)
+![](assets/ANN/ann-model.png)
 
 - Results
 
@@ -18,11 +18,11 @@ After 1000 epochs
 |:-------|:---------------|---------------|
 | 0.00213| 99.87          |  98.33        |
 
-## Convolutional Neural Network
-Reference - https://towardsdatascience.com/convolutional-neural-networks-from-the-ground-up-c67bb41454e1<br>
+[//]: <> (## Convolutional Neural Network)
+[//]: <> (Reference - https://towardsdatascience.com/lets-code-convolutional-neural-network-in-plain-numpy-ce48e732f5d5<br>)
 
 ## Coming soon
 
-- CNNs 
+- CNNs
 
 - LSTM-RNNs
