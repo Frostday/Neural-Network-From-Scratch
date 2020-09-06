@@ -23,6 +23,6 @@ Reference - https://towardsdatascience.com/convolutional-neural-networks-from-th
 
 ## Coming soon
 
--CNNs 
+- CNNs 
 
--LSTM-RNNs
+- LSTM-RNNs
