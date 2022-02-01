@@ -24,5 +24,3 @@ After 1000 epochs
 ## Coming soon
 
 - CNNs
-
-- LSTM-RNNs
